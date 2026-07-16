@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Inventory — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+        <div class="page-header">
+            <h2>Inventory</h2>
+            <button id="showAddFormBtn" class="btn-primary">+ Add Item</button>
+        </div>
+
+        <div class="filter-row">
+            <input type="text" id="searchBox" placeholder="Search by name, code, or brand..." class="search-box">
+            <select id="typeFilter">
+                <option value="">All Types</option>
+                <option value="frame">Frames</option>
+                <option value="lens">Lenses</option>
+                <option value="accessory">Accessories</option>
+            </select>
+            <label class="low-stock-toggle">
+                <input type="checkbox" id="lowStockOnly"> Low stock only
+            </label>
+        </div>
+
+        <!-- Add item form -->
+        <div id="addFormWrapper" class="form-card hidden">
+            <h3>New Inventory Item</h3>
+            <form id="addItemForm">
+                <div class="form-row">
+                    <div>
+                        <label>Type *</label>
+                        <select name="item_type" required>
+                            <option value="">Select...</option>
+                            <option value="frame">Frame</option>
+                            <option value="lens">Lens</option>
+                            <option value="accessory">Accessory</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Name *</label>
+                        <input type="text" name="name" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Brand</label>
+                        <input type="text" name="brand">
+                    </div>
+                    <div>
+                        <label>Model</label>
+                        <input type="text" name="model">
+                    </div>
+                    <div>
+                        <label>Color</label>
+                        <input type="text" name="color">
+                    </div>
+                    <div>
+                        <label>Size</label>
+                        <input type="text" name="size">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Cost Price</label>
+                        <input type="number" step="0.01" name="cost_price">
+                    </div>
+                    <div>
+                        <label>Selling Price</label>
+                        <input type="number" step="0.01" name="selling_price">
+                    </div>
+                    <div>
+                        <label>Starting Quantity</label>
+                        <input type="number" name="quantity_in_stock" value="0">
+                    </div>
+                    <div>
+                        <label>Reorder Level</label>
+                        <input type="number" name="reorder_level" value="5">
+                    </div>
+                </div>
+                <label>Supplier</label>
+                <select name="supplier_id" id="supplierSelect">
+                    <option value="">None</option>
+                </select>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Item</button>
+                    <button type="button" id="cancelAddBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+            <p id="addFormError" class="error-msg"></p>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Brand/Model</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="itemTableBody"></tbody>
+        </table>
+        <p id="emptyState" class="empty-state hidden">No items found.</p>
+
+        <!-- Stock adjustment form, shown when "Adjust" is clicked on a row -->
+        <div id="adjustWrapper" class="form-card hidden">
+            <h3 id="adjustItemName">Adjust Stock</h3>
+            <form id="adjustForm">
+                <div class="form-row">
+                    <div>
+                        <label>Change Amount (use negative to remove, e.g. -1)</label>
+                        <input type="number" name="change_qty" required>
+                    </div>
+                    <div>
+                        <label>Reason *</label>
+                        <select name="reason" required>
+                            <option value="">Select...</option>
+                            <option value="purchase">New stock received</option>
+                            <option value="damaged">Damaged / broken</option>
+                            <option value="physical_count">Physical count correction</option>
+                            <option value="returned">Customer return</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <label>Notes (optional)</label>
+                <textarea name="notes" rows="2"></textarea>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Adjustment</button>
+                    <button type="button" id="cancelAdjustBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+            <p id="adjustError" class="error-msg"></p>
+            <p id="adjustSuccess" class="success-msg"></p>
+        </div>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/inventory.js"></script>
+</body>
+</html>

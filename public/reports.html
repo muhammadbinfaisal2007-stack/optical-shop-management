@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Reports — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+        <h2>Reports</h2>
+
+        <div class="report-tabs">
+            <button class="tab-btn active" data-tab="daily">Daily Sales</button>
+            <button class="tab-btn" data-tab="range">Sales Range</button>
+            <button class="tab-btn" data-tab="stock">Stock Levels</button>
+            <button class="tab-btn" data-tab="bestsellers">Best Sellers</button>
+            <button class="tab-btn" data-tab="dues">Outstanding Dues</button>
+        </div>
+
+        <!-- Daily Sales -->
+        <div class="report-panel" id="panel-daily">
+            <div class="filter-row">
+                <input type="date" id="dailyDate">
+                <button id="dailyLoadBtn" class="btn-secondary">Load</button>
+                <a id="dailyCsvLink" href="#"><button class="btn-secondary">Export CSV</button></a>
+            </div>
+            <div id="dailyResults"></div>
+        </div>
+
+        <!-- Sales Range -->
+        <div class="report-panel hidden" id="panel-range">
+            <div class="filter-row">
+                <input type="date" id="rangeStart"> to <input type="date" id="rangeEnd">
+                <button id="rangeLoadBtn" class="btn-secondary">Load</button>
+                <a id="rangeCsvLink" href="#"><button class="btn-secondary">Export CSV</button></a>
+            </div>
+            <div id="rangeResults"></div>
+        </div>
+
+        <!-- Stock Levels -->
+        <div class="report-panel hidden" id="panel-stock">
+            <div class="filter-row">
+                <select id="stockTypeFilter">
+                    <option value="">All Types</option>
+                    <option value="frame">Frames</option>
+                    <option value="lens">Lenses</option>
+                    <option value="accessory">Accessories</option>
+                </select>
+                <button id="stockLoadBtn" class="btn-secondary">Load</button>
+                <a id="stockCsvLink" href="#"><button class="btn-secondary">Export CSV</button></a>
+            </div>
+            <div id="stockResults"></div>
+        </div>
+
+        <!-- Best Sellers -->
+        <div class="report-panel hidden" id="panel-bestsellers">
+            <div class="filter-row">
+                <input type="date" id="bestStart"> to <input type="date" id="bestEnd">
+                <button id="bestLoadBtn" class="btn-secondary">Load</button>
+                <a id="bestCsvLink" href="#"><button class="btn-secondary">Export CSV</button></a>
+            </div>
+            <div id="bestResults"></div>
+        </div>
+
+        <!-- Dues -->
+        <div class="report-panel hidden" id="panel-dues">
+            <div class="filter-row">
+                <a id="duesCsvLink" href="#"><button class="btn-secondary">Export CSV</button></a>
+            </div>
+            <div id="duesResults"></div>
+        </div>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/reports.js"></script>
+</body>
+</html>

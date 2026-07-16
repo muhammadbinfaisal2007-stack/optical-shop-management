@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar">
+        <!-- Links are added dynamically by app.js based on the logged-in
+             user's role, so e.g. Sales Staff never even sees an
+             "Inventory Cost Price" link they shouldn't have access to. -->
+    </nav>
+
+    <main class="content">
+        <h2>Dashboard</h2>
+        <div id="dashboardContent">Loading...</div>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

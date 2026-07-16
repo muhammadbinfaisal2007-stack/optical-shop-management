@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Backup & Restore — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+        <h2>Backup &amp; Restore</h2>
+        <p class="hint">
+            Your entire shop's data (customers, prescriptions, inventory, invoices, payments — everything)
+            lives in one file. Backing up copies that file; restoring replaces it. An automatic backup is
+            also made once a day while the app is running, kept for 30 days.
+        </p>
+
+        <div class="form-card">
+            <h3>Create a Backup Now</h3>
+            <button id="backupNowBtn" class="btn-primary">Backup Now</button>
+            <p id="backupNowMsg" class="success-msg"></p>
+        </div>
+
+        <h3>Available Backups</h3>
+        <table class="data-table">
+            <thead><tr><th>Filename</th><th>Size</th><th>Created</th><th></th></tr></thead>
+            <tbody id="backupListBody"></tbody>
+        </table>
+        <p class="hint">To keep your data extra safe, periodically copy backup files to a USB drive or a cloud-synced folder (like Google Drive or Dropbox) — this protects you even if the laptop itself is lost, stolen, or damaged.</p>
+
+        <div class="form-card">
+            <h3>Restore From a Backup</h3>
+            <p class="hint" style="color: #dc2626;">
+                Warning: restoring will REPLACE all current data with the data from the backup file
+                you choose. Anything entered after that backup was made will be lost. The app will
+                stop after restoring — you'll need to start it again.
+            </p>
+            <input type="file" id="restoreFileInput" accept=".db">
+            <div class="form-actions">
+                <button id="restoreBtn" class="btn-secondary">Restore From This File</button>
+            </div>
+            <p id="restoreError" class="error-msg"></p>
+            <p id="restoreSuccess" class="success-msg"></p>
+        </div>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/backup.js"></script>
+</body>
+</html>

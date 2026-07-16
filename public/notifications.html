@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Notifications — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+        <div class="page-header">
+            <h2>Notifications</h2>
+            <button id="markAllReadBtn" class="btn-secondary">Mark All as Read</button>
+        </div>
+        <p class="hint">Stock changes made by staff appear here so you can review what changed, who changed it, and why — nothing here blocks their work, this is just visibility.</p>
+
+        <div id="notificationList"></div>
+        <p id="emptyState" class="empty-state hidden">No notifications yet.</p>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/notifications.js"></script>
+</body>
+</html>

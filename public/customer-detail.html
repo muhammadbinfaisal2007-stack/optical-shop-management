@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Customer Profile — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+        <a href="/customers.html">&larr; Back to Customers</a>
+
+        <div id="profileCard" class="form-card">
+            <div class="page-header">
+                <h2 id="customerName">Loading...</h2>
+                <button id="editBtn" class="btn-secondary">Edit</button>
+            </div>
+            <div id="profileView"></div>
+
+            <!-- Edit form, hidden until "Edit" is clicked -->
+            <form id="editForm" class="hidden">
+                <div class="form-row">
+                    <div>
+                        <label>Full Name *</label>
+                        <input type="text" name="full_name" required>
+                    </div>
+                    <div>
+                        <label>Phone *</label>
+                        <input type="text" name="phone" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Email</label>
+                        <input type="email" name="email">
+                    </div>
+                    <div>
+                        <label>Date of Birth</label>
+                        <input type="date" name="date_of_birth">
+                    </div>
+                </div>
+                <label>Address</label>
+                <input type="text" name="address">
+                <label>Notes</label>
+                <textarea name="notes" rows="2"></textarea>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                    <button type="button" id="cancelEditBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+            <p id="editFormError" class="error-msg"></p>
+        </div>
+
+        <h3>Prescription History</h3>
+        <button id="showAddPrescriptionBtn" class="btn-primary">+ Add Prescription</button>
+
+        <div id="addPrescriptionWrapper" class="form-card hidden">
+            <h3>New Prescription</h3>
+            <form id="addPrescriptionForm">
+                <table class="rx-table">
+                    <thead>
+                        <tr><th></th><th>Sphere</th><th>Cylinder</th><th>Axis</th><th>Add</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>OD (Right)</strong></td>
+                            <td><input type="number" step="0.25" name="od_sphere"></td>
+                            <td><input type="number" step="0.25" name="od_cylinder"></td>
+                            <td><input type="number" name="od_axis"></td>
+                            <td><input type="number" step="0.25" name="od_add"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>OS (Left)</strong></td>
+                            <td><input type="number" step="0.25" name="os_sphere"></td>
+                            <td><input type="number" step="0.25" name="os_cylinder"></td>
+                            <td><input type="number" name="os_axis"></td>
+                            <td><input type="number" step="0.25" name="os_add"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-row">
+                    <div>
+                        <label>Pupillary Distance (mm)</label>
+                        <input type="number" step="0.5" name="pupillary_distance">
+                    </div>
+                    <div>
+                        <label>Prescribed Date</label>
+                        <input type="date" name="prescribed_date">
+                    </div>
+                </div>
+                <label>Notes</label>
+                <textarea name="notes" rows="2"></textarea>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Prescription</button>
+                    <button type="button" id="cancelAddPrescriptionBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+            <p id="addPrescriptionError" class="error-msg"></p>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>OD (Sph/Cyl/Axis)</th>
+                    <th>OS (Sph/Cyl/Axis)</th>
+                    <th>PD</th>
+                    <th>Prescribed By</th>
+                </tr>
+            </thead>
+            <tbody id="prescriptionTableBody"></tbody>
+        </table>
+        <p id="noPrescriptions" class="empty-state hidden">No prescriptions on file yet.</p>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/customer-detail.js"></script>
+</body>
+</html>

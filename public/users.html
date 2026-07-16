@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Staff Accounts — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+        <div class="page-header">
+            <h2>Staff Accounts</h2>
+            <button id="showAddFormBtn" class="btn-primary">+ Add Staff Account</button>
+        </div>
+
+        <div id="addFormWrapper" class="form-card hidden">
+            <h3>New Staff Account</h3>
+            <form id="addUserForm">
+                <div class="form-row">
+                    <div>
+                        <label>Full Name *</label>
+                        <input type="text" name="full_name" required>
+                    </div>
+                    <div>
+                        <label>Username *</label>
+                        <input type="text" name="username" required autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Temporary Password *</label>
+                        <input type="text" name="password" required minlength="6">
+                    </div>
+                    <div>
+                        <label>Role *</label>
+                        <select name="role" required>
+                            <option value="">Select a role...</option>
+                            <option value="sales">Sales Staff</option>
+                            <option value="optometrist">Optometrist</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="hint">Share this username and temporary password with the employee directly — there is no email/SMS delivery in this system.</p>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Create Account</button>
+                    <button type="button" id="cancelAddBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+            <p id="addFormError" class="error-msg"></p>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody"></tbody>
+        </table>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/users.js"></script>
+</body>
+</html>

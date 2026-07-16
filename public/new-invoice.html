@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>New Invoice — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+        <a href="/sales.html">&larr; Back to Sales &amp; Invoices</a>
+        <h2>New Invoice</h2>
+
+        <div class="form-card" style="max-width: 800px;">
+            <!-- Step 1: Customer -->
+            <label>Customer *</label>
+            <input type="text" id="customerSearch" placeholder="Search by name or phone...">
+            <div id="customerResults" class="search-results hidden"></div>
+            <p id="selectedCustomer" class="hint"></p>
+            <input type="hidden" id="customerId">
+            <button type="button" id="showNewCustomerBtn" class="btn-secondary btn-small" style="margin-top: 6px;">+ New Customer</button>
+
+            <div id="newCustomerWrapper" class="form-card hidden" style="margin-top: 10px;">
+                <div class="form-row">
+                    <div>
+                        <label>Full Name *</label>
+                        <input type="text" id="newCustomerName">
+                    </div>
+                    <div>
+                        <label>Phone *</label>
+                        <input type="text" id="newCustomerPhone">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="saveNewCustomerBtn" class="btn-primary btn-small">Save & Select</button>
+                    <button type="button" id="cancelNewCustomerBtn" class="btn-secondary btn-small">Cancel</button>
+                </div>
+                <p id="newCustomerError" class="error-msg"></p>
+            </div>
+
+            <!-- Step 2: Add items -->
+            <label style="margin-top: 20px;">Add Items</label>
+            <input type="text" id="itemSearch" placeholder="Search inventory by name or code...">
+            <div id="itemResults" class="search-results hidden"></div>
+
+            <table class="data-table" style="margin-top: 12px;">
+                <thead>
+                    <tr><th>Item</th><th>Unit Price</th><th>Qty</th><th>Disc %</th><th>Line Total</th><th></th></tr>
+                </thead>
+                <tbody id="invoiceItemsBody"></tbody>
+            </table>
+            <p id="noItems" class="empty-state">No items added yet.</p>
+
+            <!-- Service lines (FR-SI-03) -->
+            <label style="margin-top: 20px;">Service Charges (optional — e.g. fitting, lens cutting; no stock impact)</label>
+            <div class="form-row">
+                <div><input type="text" id="serviceDescription" placeholder="Description"></div>
+                <div><input type="number" id="servicePrice" placeholder="Price" min="0" step="0.01"></div>
+                <button type="button" id="addServiceBtn" class="btn-secondary">Add</button>
+            </div>
+            <table class="data-table" id="serviceLinesTable" style="margin-top: 8px;">
+                <tbody id="serviceLinesBody"></tbody>
+            </table>
+
+            <!-- Step 3: Discount & Payment -->
+            <div class="form-row" style="margin-top: 20px;">
+                <div>
+                    <label>Additional Invoice-Level Discount % <span id="discountLimitHint"></span></label>
+                    <input type="number" id="discountPercent" value="0" min="0" max="100" step="0.5">
+                </div>
+                <div>
+                    <label>Initial Payment (optional — leave 0 if unpaid for now)</label>
+                    <input type="number" id="initialPayment" value="0" min="0" step="0.01">
+                </div>
+                <div>
+                    <label>Payment Method</label>
+                    <select id="paymentMethod">
+                        <option value="cash">Cash</option>
+                        <option value="bank_transfer">Bank Transfer</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div id="tenderedWrapper">
+                    <label>Cash Tendered (optional)</label>
+                    <input type="number" id="tenderedAmount" min="0" step="0.01" placeholder="Leave blank for exact amount">
+                </div>
+            </div>
+
+            <!-- Live totals -->
+            <div class="totals-box">
+                <p>Subtotal: <strong id="subtotalDisplay">Rs. 0.00</strong></p>
+                <p>Discount: <strong id="discountDisplay">Rs. 0.00</strong></p>
+                <p>Tax: <strong id="taxDisplay">Rs. 0.00</strong></p>
+                <p class="totals-final">Total: <strong id="totalDisplay">Rs. 0.00</strong></p>
+                <p>Balance Due After Payment: <strong id="balanceDisplay">Rs. 0.00</strong></p>
+            </div>
+
+            <div class="form-actions">
+                <button id="submitInvoiceBtn" class="btn-primary">Create Invoice</button>
+                <button id="saveDraftBtn" class="btn-secondary">Save as Draft / Hold</button>
+            </div>
+            <p id="submitError" class="error-msg"></p>
+        </div>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/new-invoice.js"></script>
+</body>
+</html>

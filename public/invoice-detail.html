@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Invoice — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+        <a href="/sales.html">&larr; Back to Sales &amp; Invoices</a>
+
+        <div class="page-header">
+            <h2 id="invoiceHeading">Loading...</h2>
+            <div>
+                <a id="pdfLink" href="#" target="_blank"><button class="btn-secondary">Download PDF</button></a>
+                <button id="cancelInvoiceBtn" class="btn-secondary hidden" style="color: #dc2626;">Cancel / Void Invoice</button>
+            </div>
+        </div>
+
+        <div id="invoiceSummary" class="form-card"></div>
+
+        <!-- Draft controls: only shown when status is 'draft' -->
+        <div id="draftControls" class="form-card hidden">
+            <h3>This invoice is a Draft / Hold</h3>
+            <p class="hint">No stock has been deducted and no payment has been taken yet. Finalize it to complete the sale, or discard it if it's no longer needed.</p>
+            <div class="form-row">
+                <div>
+                    <label>Payment on Finalize (optional)</label>
+                    <input type="number" id="finalizePaymentAmount" min="0" step="0.01" placeholder="0">
+                </div>
+                <div>
+                    <label>Method</label>
+                    <select id="finalizePaymentMethod">
+                        <option value="cash">Cash</option>
+                        <option value="bank_transfer">Bank Transfer</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button id="finalizeBtn" class="btn-primary">Finalize Invoice</button>
+                <button id="discardDraftBtn" class="btn-secondary" style="color: #dc2626;">Discard Draft</button>
+            </div>
+            <p id="draftError" class="error-msg"></p>
+        </div>
+
+        <h3>Items</h3>
+        <table class="data-table">
+            <thead><tr><th>Item</th><th>Unit Price</th><th>Qty</th><th>Disc %</th><th>Line Total</th></tr></thead>
+            <tbody id="itemsBody"></tbody>
+        </table>
+
+        <h3>Payment History</h3>
+        <table class="data-table">
+            <thead><tr><th>Date</th><th>Amount</th><th>Method</th><th>Change Given</th><th>Received By</th></tr></thead>
+            <tbody id="paymentsBody"></tbody>
+        </table>
+        <p id="noPayments" class="empty-state hidden">No payments recorded yet.</p>
+
+        <div id="addPaymentSection" class="form-card">
+            <h3>Add Payment</h3>
+            <form id="addPaymentForm">
+                <div class="form-row">
+                    <div>
+                        <label>Amount *</label>
+                        <input type="number" step="0.01" name="amount" required>
+                    </div>
+                    <div>
+                        <label>Method</label>
+                        <select name="method">
+                            <option value="cash">Cash</option>
+                            <option value="bank_transfer">Bank Transfer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <label>Notes (optional)</label>
+                <input type="text" name="notes">
+                <label>Cash Tendered (optional, cash payments only)</label>
+                <input type="number" step="0.01" name="tendered_amount" placeholder="Leave blank for exact amount">
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Record Payment</button>
+                </div>
+            </form>
+            <p id="paymentError" class="error-msg"></p>
+        </div>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/invoice-detail.js"></script>
+</body>
+</html>

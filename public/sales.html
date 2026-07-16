@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sales & Invoices — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+        <div class="page-header">
+            <h2>Sales &amp; Invoices</h2>
+            <a href="/new-invoice.html"><button class="btn-primary">+ New Invoice</button></a>
+        </div>
+
+        <div class="filter-row">
+            <input type="text" id="searchBox" placeholder="Search by invoice #, customer name, or phone..." class="search-box">
+            <select id="statusFilter">
+                <option value="">All Statuses</option>
+                <option value="draft">Draft / Hold</option>
+                <option value="unpaid">Unpaid</option>
+                <option value="partial">Partial</option>
+                <option value="paid">Paid</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+            <label class="low-stock-toggle">
+                <input type="checkbox" id="duesOnly"> Show only customers with dues
+            </label>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Invoice #</th>
+                    <th>Customer</th>
+                    <th>Total</th>
+                    <th>Paid</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="invoiceTableBody"></tbody>
+        </table>
+        <p id="emptyState" class="empty-state hidden">No invoices found.</p>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/sales.js"></script>
+</body>
+</html>

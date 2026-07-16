@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Customers — Optical Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Optical Shop Management</h1>
+        <div class="user-info">
+            <span id="welcomeMsg"></span>
+            <button id="logoutBtn">Log Out</button>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+        <div class="page-header">
+            <h2>Customers</h2>
+            <button id="showAddFormBtn" class="btn-primary">+ Add Customer</button>
+        </div>
+
+        <input type="text" id="searchBox" placeholder="Search by name, phone, or customer code..." class="search-box">
+        <label class="low-stock-toggle">
+            <input type="checkbox" id="showInactiveToggle"> Show deactivated customers
+        </label>
+
+        <!-- Add-customer form, hidden until "+ Add Customer" is clicked -->
+        <div id="addFormWrapper" class="form-card hidden">
+            <h3>New Customer</h3>
+            <form id="addCustomerForm">
+                <div class="form-row">
+                    <div>
+                        <label>Full Name *</label>
+                        <input type="text" name="full_name" required>
+                    </div>
+                    <div>
+                        <label>Phone *</label>
+                        <input type="text" name="phone" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Email</label>
+                        <input type="email" name="email">
+                    </div>
+                    <div>
+                        <label>Date of Birth</label>
+                        <input type="date" name="date_of_birth">
+                    </div>
+                </div>
+                <label>Address</label>
+                <input type="text" name="address">
+                <label>Notes</label>
+                <textarea name="notes" rows="2"></textarea>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Customer</button>
+                    <button type="button" id="cancelAddBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+            <p id="addFormError" class="error-msg"></p>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="customerTableBody">
+                <!-- Rows added dynamically by customers.js -->
+            </tbody>
+        </table>
+        <p id="emptyState" class="empty-state hidden">No customers found.</p>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/customers.js"></script>
+</body>
+</html>
